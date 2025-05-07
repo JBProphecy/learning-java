@@ -1,4 +1,4 @@
-# LEARNING JAVA
+# Learning Java
 
 This project is my place to experiment with Java and learn what I can.
 
