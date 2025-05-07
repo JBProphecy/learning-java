@@ -12,7 +12,7 @@ public class PostgresConnectionUtility {
   private static String password;
 
   static {
-    try (InputStream input = PostgresConnectionUtility.class.getClassLoader().getResourceAsStream("db.properties")) {
+    try (InputStream input = PostgresConnectionUtility.class.getClassLoader().getResourceAsStream("db-local.properties")) {
       Properties props = new Properties();
       props.load(input);
       url = System.getenv(props.getProperty("db.url.env.key"));

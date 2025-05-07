@@ -1,5 +1,5 @@
 # Property Files
-db.properties
+db-local.properties
 
 # Target Directory
 /target/
