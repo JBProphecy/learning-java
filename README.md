@@ -4,7 +4,7 @@ This project is my place to experiment with Java and learn what I can.
 
 ---
 
-# Environment Variables and Property Files
+## Environment Variables and Property Files
 
 I'm used to working with Node.js and using .env files to work with environment variables, but different approach is required for Java.
 
