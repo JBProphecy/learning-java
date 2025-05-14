@@ -3,6 +3,8 @@ package com.example;
 import com.example.persistence.models.Account;
 import com.example.persistence.services.AccountService;
 
+import io.javalin.Javalin;
+
 public class App
 {
   public static void main(String[] args)
@@ -18,5 +20,8 @@ public class App
 
     // Delete Account
     System.out.println("Deleted Account: " + accountService.deleteAccountByEmail("hey@gmail.com"));
+
+    // Web Server
+    Javalin app = Javalin.create().start(9000);
   }
 }
