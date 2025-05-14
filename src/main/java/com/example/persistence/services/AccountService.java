@@ -11,6 +11,14 @@ public class AccountService {
     this.accountDAO = new PostgresAccountDAO();
   }
 
+  public boolean changeNameByID(String id, String name) {
+    return this.accountDAO.changeNameByID(id, name);
+  }
+
+  public boolean changeNameByEmail(String email, String name) {
+    return this.accountDAO.changeNameByEmail(email, name);
+  }
+
   public boolean deleteAccountByEmail(String email) {
     return this.accountDAO.deleteAccountByEmail(email);
   }
