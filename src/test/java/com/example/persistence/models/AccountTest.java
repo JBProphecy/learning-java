@@ -5,23 +5,28 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.UUID;
+
 import org.junit.jupiter.api.Test;
 
 public class AccountTest
 {
   @Test
   public void testToString() {
-    Account account = new Account("1", "Jack", "fj@gmail.com", "hey");
-    String expected = "Account{id='1', name='Jack'}";
+    UUID uuid = UUID.randomUUID();
+    Account account = new Account(uuid, "Jack", "fj@gmail.com", "hey");
+    String expected = "Account{id='" + uuid + "', name='Jack'}";
 
     assertEquals(expected, account.toString());
   }
   
   @Test
   public void testEquals() {
-    Account account01 = new Account("1", "Jack", "fj@gmail.com", "hey");
-    Account account02 = new Account("1", "Jack", "fj@gmail.com", "hey");
-    Account account03 = new Account("2", "Jack", "fj@gmail.com", "hey");
+    UUID uuid1 = UUID.randomUUID();
+    UUID uuid2 = UUID.randomUUID();
+    Account account01 = new Account(uuid1, "Jack", "fj@gmail.com", "hey");
+    Account account02 = new Account(uuid1, "Jack", "fj@gmail.com", "hey");
+    Account account03 = new Account(uuid2, "Jack", "fj@gmail.com", "hey");
 
     assertTrue(account01.equals(account02));
     assertFalse(account01.equals(account03));
@@ -30,9 +35,11 @@ public class AccountTest
 
   @Test
   public void testHashCode() {
-    Account account01 = new Account("1", "Jack", "fj@gmail.com", "hey");
-    Account account02 = new Account("1", "Jack", "fj@gmail.com", "hey");
-    Account account03 = new Account("2", "Jack", "fj@gmail.com", "hey");
+    UUID uuid1 = UUID.randomUUID();
+    UUID uuid2 = UUID.randomUUID();
+    Account account01 = new Account(uuid1, "Jack", "fj@gmail.com", "hey");
+    Account account02 = new Account(uuid1, "Jack", "fj@gmail.com", "hey");
+    Account account03 = new Account(uuid2, "Jack", "fj@gmail.com", "hey");
 
     assertEquals(account01.hashCode(), account02.hashCode());
     assertNotEquals(account01.hashCode(), account03.hashCode());

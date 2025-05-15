@@ -1,13 +1,24 @@
 package com.example.persistence.models;
 
-public class Account {
-  private String id;
-  private String name;
-  private String email;
-  private String password;
+import java.util.UUID;
 
-  // Constructor
-  public Account(String id, String name, String email, String password) {
+public class Account
+{
+  private final UUID id;
+  private final String name;
+  private final String email;
+  private final String password;
+
+  // Constructor (generate ID)
+  public Account(String name, String email, String password) {
+    this.id = UUID.randomUUID();
+    this.name = name;
+    this.email = email;
+    this.password = password;
+  }
+  
+  // Constructor (provide ID)
+  public Account(UUID id, String name, String email, String password) {
     this.id = id;
     this.name = name;
     this.email = email;
@@ -15,16 +26,10 @@ public class Account {
   }
 
   // Getters
-  public String getID() { return this.id; }
+  public UUID getID() { return this.id; }
   public String getName() { return this.name; }
   public String getEmail() { return this.email; }
   public String getPassword() { return this.password; }
-
-  // Setters
-  public void setID(String id) { this.id = id; }
-  public void setName(String name) { this.name = name; }
-  public void setEmail(String email) { this.email = email; }
-  public void setPassword(String password) { this.password = password; }
 
   @Override
   public String toString() {

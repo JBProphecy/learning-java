@@ -3,3 +3,6 @@ db-local.properties
 
 # Target Directory
 /target/
+
+# Logs
+/logs/

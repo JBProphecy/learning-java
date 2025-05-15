@@ -6,7 +6,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class PostgresConnectionUtility {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.example.persistence.access.PostgresAccountDAO;
+
+public class PostgresConnectionUtility
+{
+  private static final Logger logger = LoggerFactory.getLogger(PostgresAccountDAO.class);
+
   private static String url;
   private static String username;
   private static String password;
@@ -20,7 +28,7 @@ public class PostgresConnectionUtility {
       password = System.getenv(props.getProperty("db.password.env.key"));
     }
     catch (Exception e) {
-      e.printStackTrace();
+      logger.error("Error Getting Postgres Connection", e);
       throw new RuntimeException("failed to load database properties", e);
     }
   }
