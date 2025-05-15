@@ -2,16 +2,15 @@ package com.example.persistence.services;
 
 import java.util.UUID;
 
-import com.example.persistence.access.PostgresProfileDAO;
 import com.example.persistence.interfaces.ProfileDAI;
 import com.example.persistence.models.Profile;
 
 public class ProfileService
 {
-  private ProfileDAI profileDAO;
+  private final ProfileDAI profileDAO;
 
-  public ProfileService() {
-    this.profileDAO = new PostgresProfileDAO();
+  public ProfileService(ProfileDAI profileDAO) {
+    this.profileDAO = profileDAO;
   }
   
   public boolean registerProfile(Profile profile) {

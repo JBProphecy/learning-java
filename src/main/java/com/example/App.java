@@ -1,5 +1,7 @@
 package com.example;
 
+import com.example.persistence.access.PostgresAccountDAO;
+import com.example.persistence.access.PostgresProfileDAO;
 import com.example.persistence.models.Account;
 import com.example.persistence.models.Profile;
 import com.example.persistence.services.AccountService;
@@ -10,25 +12,25 @@ public class App {
   {
     System.out.println("Hello World");
 
+    // Services
+    AccountService accountService = new AccountService(new PostgresAccountDAO());
+    ProfileService profileService = new ProfileService(new PostgresProfileDAO());
+
     // Create Account
-    Account account = new Account("Jack", "hey@gmail.com", "hey");
+    Account account = Account.generate("Jack", "hey@gmail.com", "hey");
     System.out.println("Created Account: " + account);
-    // Account Service
-    AccountService accountService = new AccountService();
+
     // Register Account
     System.out.println("Registered Account: " + accountService.registerAccount(account));
-    // Delete Account
 
     // Get Account
     Account registeredAccount = accountService.getAccountByEmail("hey@gmail.com");
 
     // Create Profile
-    Profile profile = new Profile("Jack", "YoDaMcSteamy", "bitch", registeredAccount.getID());
+    Profile profile = Profile.generate("Jack", "YoDaMcSteamy", "bitch", registeredAccount.getID());
     System.out.println("Created Profile: " + profile);
-    // Profile Service
-    ProfileService profileService = new ProfileService();
+
     // Register Profile
     System.out.println("Registered Profile: " + profileService.registerProfile(profile));
-    // Delete Profile
   }
 }

@@ -9,23 +9,21 @@ public class Account
   private final String email;
   private final String password;
 
-  // Constructor (generate ID)
-  public Account(String name, String email, String password) {
-    this.id = UUID.randomUUID();
-    this.name = name;
-    this.email = email;
-    this.password = password;
-  }
-  
-  // Constructor (provide ID)
-  public Account(UUID id, String name, String email, String password) {
+  private Account(UUID id, String name, String email, String password) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.password = password;
   }
 
-  // Getters
+  public static Account generate(String name, String email, String password) {
+    return new Account(UUID.randomUUID(), name, email, password);
+  }
+  
+  public static Account construct(UUID id, String name, String email, String password) {
+    return new Account(id, name, email, password);
+  }
+
   public UUID getID() { return this.id; }
   public String getName() { return this.name; }
   public String getEmail() { return this.email; }

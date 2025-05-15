@@ -74,7 +74,7 @@ public class PostgresProfileDAO implements ProfileDAI
       try (ResultSet rs = statement.executeQuery()) {
         if (!rs.next()) { return null; }
         else {
-          return new Profile(
+          return Profile.construct(
             (UUID) rs.getObject("id"),
             rs.getString("name"),
             rs.getString("username"),
@@ -100,7 +100,7 @@ public class PostgresProfileDAO implements ProfileDAI
       try (ResultSet rs = statement.executeQuery()) {
         if (!rs.next()) { return null; }
         else {
-          return new Profile(
+          return Profile.construct(
             (UUID) rs.getObject("id"),
             rs.getString("name"),
             rs.getString("username"),
@@ -127,7 +127,7 @@ public class PostgresProfileDAO implements ProfileDAI
       return statement.executeUpdate() > 0;
     }
     catch (SQLException e) {
-      logger.error("Error Updating Name by ID", e);
+      logger.error("Error Updating Profile Name", e);
       return false;
     }
   }

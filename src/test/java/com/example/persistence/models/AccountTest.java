@@ -14,7 +14,7 @@ public class AccountTest
   @Test
   public void testToString() {
     UUID uuid = UUID.randomUUID();
-    Account account = new Account(uuid, "Jack", "fj@gmail.com", "hey");
+    Account account = Account.construct(uuid, "Jack", "fj@gmail.com", "hey");
     String expected = "Account{id='" + uuid + "', name='Jack'}";
 
     assertEquals(expected, account.toString());
@@ -24,9 +24,9 @@ public class AccountTest
   public void testEquals() {
     UUID uuid1 = UUID.randomUUID();
     UUID uuid2 = UUID.randomUUID();
-    Account account01 = new Account(uuid1, "Jack", "fj@gmail.com", "hey");
-    Account account02 = new Account(uuid1, "Jack", "fj@gmail.com", "hey");
-    Account account03 = new Account(uuid2, "Jack", "fj@gmail.com", "hey");
+    Account account01 = Account.construct(uuid1, "Jack", "fj@gmail.com", "hey");
+    Account account02 = Account.construct(uuid1, "Jack", "fj@gmail.com", "hey");
+    Account account03 = Account.construct(uuid2, "Jack", "fj@gmail.com", "hey");
 
     assertTrue(account01.equals(account02));
     assertFalse(account01.equals(account03));
@@ -37,9 +37,9 @@ public class AccountTest
   public void testHashCode() {
     UUID uuid1 = UUID.randomUUID();
     UUID uuid2 = UUID.randomUUID();
-    Account account01 = new Account(uuid1, "Jack", "fj@gmail.com", "hey");
-    Account account02 = new Account(uuid1, "Jack", "fj@gmail.com", "hey");
-    Account account03 = new Account(uuid2, "Jack", "fj@gmail.com", "hey");
+    Account account01 = Account.construct(uuid1, "Jack", "fj@gmail.com", "hey");
+    Account account02 = Account.construct(uuid1, "Jack", "fj@gmail.com", "hey");
+    Account account03 = Account.construct(uuid2, "Jack", "fj@gmail.com", "hey");
 
     assertEquals(account01.hashCode(), account02.hashCode());
     assertNotEquals(account01.hashCode(), account03.hashCode());

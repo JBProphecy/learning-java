@@ -74,7 +74,7 @@ public class PostgresAccountDAO implements AccountDAI
       try (ResultSet rs = statement.executeQuery()) {
         if (!rs.next()) { return null; }
         else {
-          return new Account(
+          return Account.construct(
             (UUID) rs.getObject("id"),
             rs.getString("name"),
             rs.getString("email"),
@@ -99,7 +99,7 @@ public class PostgresAccountDAO implements AccountDAI
       try (ResultSet rs = statement.executeQuery()) {
         if (!rs.next()) { return null; }
         else {
-          return new Account(
+          return Account.construct(
             (UUID) rs.getObject("id"),
             rs.getString("name"),
             rs.getString("email"),
@@ -125,27 +125,7 @@ public class PostgresAccountDAO implements AccountDAI
       return statement.executeUpdate() > 0;
     }
     catch (SQLException e) {
-      logger.error("Error Updating Name", e);
-      return false;
-    }
-  }
-
-  private static final String UPDATE_NAME_BY_EMAIL = """
-    UPDATE accounts
-    SET name = ?
-    WHERE email = ?;
-    """;
-  public boolean updateNameByEmail(String email, String name) {
-    try (
-      Connection connection = PostgresConnectionUtility.getConnection();
-      PreparedStatement statement = connection.prepareStatement(UPDATE_NAME_BY_EMAIL);
-    ) {
-      statement.setString(1, name);
-      statement.setString(2, email);
-      return statement.executeUpdate() > 0;
-    }
-    catch (SQLException e) {
-      logger.error("Error Updating Name by Email", e);
+      logger.error("Error Updating Account Name", e);
       return false;
     }
   }

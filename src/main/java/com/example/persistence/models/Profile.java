@@ -10,17 +10,7 @@ public class Profile
   private final String password;
   private final UUID accountID;
 
-  // Constructor (generate ID)
-  public Profile(String name, String username, String password, UUID accountID) {
-    this.id = UUID.randomUUID();
-    this.name = name;
-    this.username = username;
-    this.password = password;
-    this.accountID = accountID;
-  }
-
-  // Constructor (provide ID)
-  public Profile(UUID id, String name, String username, String password, UUID accountID) {
+  private Profile(UUID id, String name, String username, String password, UUID accountID) {
     this.id = id;
     this.name = name;
     this.username = username;
@@ -28,7 +18,14 @@ public class Profile
     this.accountID = accountID;
   }
 
-  // Getters
+  public static Profile generate(String name, String username, String password, UUID accountID) {
+    return new Profile(UUID.randomUUID(), name, username, password, accountID);
+  }
+
+  public static Profile construct(UUID id, String name, String username, String password, UUID accountID) {
+    return new Profile(id, name, username, password, accountID);
+  }
+
   public UUID getID() { return this.id; }
   public String getName() { return this.name; }
   public String getUsername() { return this.username; }
