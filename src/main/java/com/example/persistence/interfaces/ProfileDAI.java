@@ -4,7 +4,8 @@ import java.util.UUID;
 
 import com.example.persistence.models.Profile;
 
-public interface ProfileDAI {
+public interface ProfileDAI
+{
   // Create
   boolean registerProfile(Profile profile);
 
@@ -13,9 +14,9 @@ public interface ProfileDAI {
 
   // Update
   boolean updateNameByID(UUID id, String name);
-  boolean updateNameByEmail(String email, String name);
+  boolean updateNameByUsername(String username, String name);
 
   // Delete
   boolean deleteProfileByID(UUID id);
-  boolean deleteProfileByEmail(String email);
+  boolean deleteProfileByUsername(String username);
 }
