@@ -18,8 +18,8 @@ public class PostgresProfileDAO implements ProfileDAI
   private static final Logger logger = LoggerFactory.getLogger(PostgresProfileDAO.class);
   
   private static final String REGISTER_PROFILE = """
-    INSERT INTO profiles (id, name, username, password)
-    VALUES (?, ?, ?, ?);
+    INSERT INTO profiles (id, name, username, password, accountID)
+    VALUES (?, ?, ?, ?, ?);
     """
   ;
   private static final String GET_PROFILE_BY_ID = """
@@ -56,6 +56,7 @@ public class PostgresProfileDAO implements ProfileDAI
       statement.setString(2, profile.getName());
       statement.setString(3, profile.getUsername());
       statement.setString(4, profile.getPassword());
+      statement.setObject(5, profile.getAccountID());
       return statement.executeUpdate() > 0;
     }
     catch (SQLException e) {
@@ -96,7 +97,7 @@ public class PostgresProfileDAO implements ProfileDAI
       Connection connection = PostgresConnectionUtility.getConnection();
       PreparedStatement statement = connection.prepareStatement(GET_PROFILE_BY_USERNAME);
     ) {
-      statement.setObject(1, username);
+      statement.setString(1, username);
       try (ResultSet rs = statement.executeQuery()) {
         if (!rs.next()) { return null; }
         else {

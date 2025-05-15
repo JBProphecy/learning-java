@@ -95,7 +95,7 @@ public class PostgresAccountDAO implements AccountDAI
       Connection connection = PostgresConnectionUtility.getConnection();
       PreparedStatement statement = connection.prepareStatement(GET_ACCOUNT_BY_EMAIL);
     ) {
-      statement.setObject(1, email);
+      statement.setString(1, email);
       try (ResultSet rs = statement.executeQuery()) {
         if (!rs.next()) { return null; }
         else {
