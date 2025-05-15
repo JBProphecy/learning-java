@@ -62,7 +62,7 @@ public class PostgresAccountDAO implements AccountDAI
       }
     }
     catch (SQLException e) {
-      logger.error("Error Registering Account", e);
+      logger.error("Error Getting Account", e);
       return null;
     }
   }
@@ -82,7 +82,7 @@ public class PostgresAccountDAO implements AccountDAI
       return statement.executeUpdate() > 0;
     }
     catch (SQLException e) {
-      logger.error("Error Registering Account", e);
+      logger.error("Error Updating Name by ID", e);
       return false;
     }
   }
@@ -102,7 +102,7 @@ public class PostgresAccountDAO implements AccountDAI
       return statement.executeUpdate() > 0;
     }
     catch (SQLException e) {
-      logger.error("Error Registering Account", e);
+      logger.error("Error Updating Name by Email", e);
       return false;
     }
   }
@@ -120,7 +120,7 @@ public class PostgresAccountDAO implements AccountDAI
       return statement.executeUpdate() > 0;
     }
     catch (SQLException e) {
-      logger.error("Error Registering Account", e);
+      logger.error("Error Deleting Account by ID", e);
       return false;
     }
   }
@@ -138,7 +138,7 @@ public class PostgresAccountDAO implements AccountDAI
       return statement.executeUpdate() > 0;
     }
     catch (SQLException e) {
-      logger.error("Error Registering Account", e);
+      logger.error("Error Deleting Account by Email", e);
       return false;
     }
   }
