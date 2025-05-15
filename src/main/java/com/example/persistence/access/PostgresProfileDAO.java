@@ -20,7 +20,33 @@ public class PostgresProfileDAO implements ProfileDAI
   private static final String REGISTER_PROFILE = """
     INSERT INTO profiles (id, name, username, password)
     VALUES (?, ?, ?, ?);
-    """;
+    """
+  ;
+  private static final String GET_PROFILE_BY_ID = """
+    SELECT id, name, username, password, accountID
+    FROM profiles
+    WHERE id = ?;
+    """
+  ;
+  private static final String GET_PROFILE_BY_USERNAME = """
+    SELECT id, name, username, password, accountID
+    FROM profiles
+    WHERE username = ?;
+    """
+  ;
+  private static final String UPDATE_NAME = """
+    UPDATE profiles
+    SET name = ?
+    WHERE id = ?;
+    """
+  ;
+  private static final String DELETE_PROFILE = """
+    DELETE FROM profiles
+    WHERE id = ?;
+    """
+  ;
+
+  @Override
   public boolean registerProfile(Profile profile) {
     try (
       Connection connection = PostgresConnectionUtility.getConnection();
@@ -38,11 +64,7 @@ public class PostgresProfileDAO implements ProfileDAI
     }
   }
 
-  private static final String GET_PROFILE_BY_ID = """
-    SELECT id, name, username, password
-    FROM profiles
-    WHERE id = ?;
-    """;
+  @Override
   public Profile getProfileByID(UUID id) {
     try (
       Connection connection = PostgresConnectionUtility.getConnection();
@@ -56,26 +78,49 @@ public class PostgresProfileDAO implements ProfileDAI
             (UUID) rs.getObject("id"),
             rs.getString("name"),
             rs.getString("username"),
-            rs.getString("password")
+            rs.getString("password"),
+            (UUID) rs.getObject("accountID")
           );
         }
       }
     }
     catch (SQLException e) {
-      logger.error("Error Getting Profile", e);
+      logger.error("Error Getting Profile by ID", e);
       return null;
     }
   }
 
-  private static final String UPDATE_NAME_BY_ID = """
-    UPDATE profiles
-    SET name = ?
-    WHERE id = ?;
-    """;
-  public boolean updateNameByID(UUID id, String name) {
+  @Override
+  public Profile getProfileByUsername(String username) {
     try (
       Connection connection = PostgresConnectionUtility.getConnection();
-      PreparedStatement statement = connection.prepareStatement(UPDATE_NAME_BY_ID);
+      PreparedStatement statement = connection.prepareStatement(GET_PROFILE_BY_USERNAME);
+    ) {
+      statement.setObject(1, username);
+      try (ResultSet rs = statement.executeQuery()) {
+        if (!rs.next()) { return null; }
+        else {
+          return new Profile(
+            (UUID) rs.getObject("id"),
+            rs.getString("name"),
+            rs.getString("username"),
+            rs.getString("password"),
+            (UUID) rs.getObject("accountID")
+          );
+        }
+      }
+    }
+    catch (SQLException e) {
+      logger.error("Error Getting Profile by Username", e);
+      return null;
+    }
+  }
+  
+  @Override
+  public boolean updateName(UUID id, String name) {
+    try (
+      Connection connection = PostgresConnectionUtility.getConnection();
+      PreparedStatement statement = connection.prepareStatement(UPDATE_NAME);
     ) {
       statement.setString(1, name);
       statement.setObject(2, id);
@@ -87,58 +132,17 @@ public class PostgresProfileDAO implements ProfileDAI
     }
   }
 
-  private static final String UPDATE_NAME_BY_USERNAME = """
-    UPDATE profiles
-    SET name = ?
-    WHERE username = ?;
-    """;
-  public boolean updateNameByUsername(String username, String name) {
+  @Override
+  public boolean deleteProfile(UUID id) {
     try (
       Connection connection = PostgresConnectionUtility.getConnection();
-      PreparedStatement statement = connection.prepareStatement(UPDATE_NAME_BY_USERNAME);
-    ) {
-      statement.setString(1, name);
-      statement.setString(2, username);
-      return statement.executeUpdate() > 0;
-    }
-    catch (SQLException e) {
-      logger.error("Error Updating Name by Username", e);
-      return false;
-    }
-  }
-
-  private static final String DELETE_PROFILE_BY_ID = """
-    DELETE FROM profiles
-    WHERE id = ?;
-    """;
-  public boolean deleteProfileByID(UUID id) {
-    try (
-      Connection connection = PostgresConnectionUtility.getConnection();
-      PreparedStatement statement = connection.prepareStatement(DELETE_PROFILE_BY_ID);
+      PreparedStatement statement = connection.prepareStatement(DELETE_PROFILE);
     ) {
       statement.setObject(1, id);
       return statement.executeUpdate() > 0;
     }
     catch (SQLException e) {
-      logger.error("Error Deleting Profile by ID", e);
-      return false;
-    }
-  }
-
-  private static final String DELETE_PROFILE_BY_USERNAME = """
-    DELETE FROM profiles
-    WHERE username = ?;
-    """;
-  public boolean deleteProfileByUsername(String username) {
-    try (
-      Connection connection = PostgresConnectionUtility.getConnection();
-      PreparedStatement statement = connection.prepareStatement(DELETE_PROFILE_BY_USERNAME);
-    ) {
-      statement.setString(1, username);
-      return statement.executeUpdate() > 0;
-    }
-    catch (SQLException e) {
-      logger.error("Error Deleting Profile by Username", e);
+      logger.error("Error Deleting Profile", e);
       return false;
     }
   }

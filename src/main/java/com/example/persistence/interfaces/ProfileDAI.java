@@ -7,9 +7,14 @@ import com.example.persistence.models.Profile;
 public interface ProfileDAI
 {
   boolean registerProfile(Profile profile);
+
   Profile getProfileByID(UUID id);
-  boolean updateNameByID(UUID id, String name);
-  boolean updateNameByUsername(String username, String name);
-  boolean deleteProfileByID(UUID id);
-  boolean deleteProfileByUsername(String username);
+  Profile getProfileByUsername(String username);
+  // List<Profile> getProfilesByAccountID(UUID id);
+
+  boolean updateName(UUID id, String name);
+  // boolean updateUsername(UUID id, String username);
+  // boolean updatePassword(UUID id, String password);
+
+  boolean deleteProfile(UUID id);
 }

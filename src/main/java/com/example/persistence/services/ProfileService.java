@@ -6,7 +6,8 @@ import com.example.persistence.access.PostgresProfileDAO;
 import com.example.persistence.interfaces.ProfileDAI;
 import com.example.persistence.models.Profile;
 
-public class ProfileService {
+public class ProfileService
+{
   private ProfileDAI profileDAO;
 
   public ProfileService() {
@@ -21,19 +22,15 @@ public class ProfileService {
     return this.profileDAO.getProfileByID(id);
   }
 
+  public Profile getProfileByUsername(String username) {
+    return this.profileDAO.getProfileByUsername(username);
+  }
+
   public boolean updateNameByID(UUID id, String name) {
-    return this.profileDAO.updateNameByID(id, name);
+    return this.profileDAO.updateName(id, name);
   }
 
-  public boolean updateNameByUsername(String username, String name) {
-    return this.profileDAO.updateNameByUsername(username, name);
-  }
-
-  public boolean deleteProfileByID(UUID id) {
-    return this.profileDAO.deleteProfileByID(id);
-  }
-
-  public boolean deleteProfileByUsername(String username) {
-    return this.profileDAO.deleteProfileByUsername(username);
+  public boolean deleteProfile(UUID id) {
+    return this.profileDAO.deleteProfile(id);
   }
 }

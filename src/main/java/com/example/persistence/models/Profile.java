@@ -8,21 +8,24 @@ public class Profile
   private final String name;
   private final String username;
   private final String password;
+  private final UUID accountID;
 
   // Constructor (generate ID)
-  public Profile(String name, String username, String password) {
+  public Profile(String name, String username, String password, UUID accountID) {
     this.id = UUID.randomUUID();
     this.name = name;
     this.username = username;
     this.password = password;
+    this.accountID = accountID;
   }
 
   // Constructor (provide ID)
-  public Profile(UUID id, String name, String username, String password) {
+  public Profile(UUID id, String name, String username, String password, UUID accountID) {
     this.id = id;
     this.name = name;
     this.username = username;
     this.password = password;
+    this.accountID = accountID;
   }
 
   // Getters
@@ -30,6 +33,7 @@ public class Profile
   public String getName() { return this.name; }
   public String getUsername() { return this.username; }
   public String getPassword() { return this.password; }
+  public UUID getAccountID() { return this.accountID; }
 
   @Override
   public String toString() {
