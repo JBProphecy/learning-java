@@ -1,4 +1,4 @@
-package com.example.persistence.utils;
+package com.example.data.utilities;
 
 import java.io.InputStream;
 import java.sql.Connection;
@@ -9,7 +9,7 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.example.persistence.access.PostgresAccountDAO;
+import com.example.data.access.classes.PostgresAccountDAO;
 
 public class PostgresConnectionUtility
 {

@@ -1,4 +1,4 @@
-package com.example.persistence.access;
+package com.example.data.access.classes;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,9 +9,9 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.example.persistence.interfaces.AccountDAI;
-import com.example.persistence.models.Account;
-import com.example.persistence.utils.PostgresConnectionUtility;
+import com.example.data.access.interfaces.AccountDAI;
+import com.example.data.models.Account;
+import com.example.data.utilities.PostgresConnectionUtility;
 
 public class PostgresAccountDAO implements AccountDAI
 {

@@ -1,15 +1,16 @@
-package com.example.persistence.services;
+package com.example.data.service.classes;
 
 import java.util.UUID;
 
-import com.example.persistence.interfaces.AccountDAI;
-import com.example.persistence.models.Account;
+import com.example.data.access.interfaces.AccountDAI;
+import com.example.data.models.Account;
+import com.example.data.service.interfaces.AccountServiceInterface;
 
-public class AccountService
+public class AccountServiceObject implements AccountServiceInterface
 {
   private final AccountDAI accountDAO;
 
-  public AccountService(AccountDAI accountDAO) {
+  public AccountServiceObject(AccountDAI accountDAO) {
     this.accountDAO = accountDAO;
   }
 

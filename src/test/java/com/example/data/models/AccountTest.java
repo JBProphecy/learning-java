@@ -1,4 +1,4 @@
-package com.example.persistence.models;
+package com.example.data.models;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

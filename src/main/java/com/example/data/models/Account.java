@@ -1,4 +1,4 @@
-package com.example.persistence.models;
+package com.example.data.models;
 
 import java.util.UUID;
 

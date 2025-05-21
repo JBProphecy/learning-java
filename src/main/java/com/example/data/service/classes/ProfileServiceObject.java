@@ -1,15 +1,16 @@
-package com.example.persistence.services;
+package com.example.data.service.classes;
 
 import java.util.UUID;
 
-import com.example.persistence.interfaces.ProfileDAI;
-import com.example.persistence.models.Profile;
+import com.example.data.access.interfaces.ProfileDAI;
+import com.example.data.models.Profile;
+import com.example.data.service.interfaces.ProfileServiceInterface;
 
-public class ProfileService
+public class ProfileServiceObject implements ProfileServiceInterface
 {
   private final ProfileDAI profileDAO;
 
-  public ProfileService(ProfileDAI profileDAO) {
+  public ProfileServiceObject(ProfileDAI profileDAO) {
     this.profileDAO = profileDAO;
   }
   
