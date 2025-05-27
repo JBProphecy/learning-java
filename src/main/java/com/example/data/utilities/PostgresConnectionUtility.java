@@ -29,7 +29,7 @@ public class PostgresConnectionUtility
     }
     catch (Exception e) {
       logger.error("Error Getting Postgres Connection", e);
-      throw new RuntimeException("failed to load database properties", e);
+      throw new RuntimeException("Failed to Load Database Properties", e);
     }
   }
 
