@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import com.example.data.models.music.Artist;
 import com.example.data.models.music.Song;
+import com.example.temp.examples.Base62Example;
 
 public class App
 {
@@ -22,5 +23,6 @@ public class App
     System.out.println(artist03);
     System.out.println("SONG EXAMPLE STRING");
     System.out.println(song01);
+    Base62Example.main();
   }
 }

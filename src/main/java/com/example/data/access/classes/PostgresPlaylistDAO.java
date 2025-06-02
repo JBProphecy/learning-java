@@ -11,11 +11,11 @@ import com.example.data.access.interfaces.PlaylistDAI;
 import com.example.data.models.music.Playlist;
 import com.example.data.utilities.PostgresConnectionUtility;
 
-public class PostgresPlaylistDAO implements PlaylistDAI
+public class PostgresPlaylistDAO // implements PlaylistDAI
 {
   private static final Logger logger = LoggerFactory.getLogger(PostgresAccountDAO.class);
 
-  @Override
+  // @Override
   public boolean registerPlaylist(Playlist playlist) { // surely the insert fields are not complete yet
     String sql = """
       INSERT INTO playlists (id, name, description)

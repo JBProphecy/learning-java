@@ -1,4 +1,4 @@
-package com.example.utils;
+package com.example.temp.utils;
 
 public final class StringUtils
 {
