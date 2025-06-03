@@ -70,7 +70,7 @@ public class Song
       "Song{" +
       "id='" + this.id + "', " +
       "title='" + this.title + "', " +
-      "artists={" + artistNames + ", " +
+      "artists={" + artistNames + "}, " +
       "audio?=" + hasAudio + ", " +
       "cover?=" + hasCover + "}"
     ;

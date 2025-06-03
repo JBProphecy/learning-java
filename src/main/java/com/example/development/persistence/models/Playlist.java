@@ -1,6 +1,7 @@
 package com.example.development.persistence.models;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Playlist
 {
@@ -51,6 +52,28 @@ public class Playlist
   public String getName() { return this.name; }
   public String getDescription() { return this.description; }
   public List<Song> getSongs() { return this.songs; }
+
+  @Override
+  public String toString() {
+    String songNames = this.songs.stream().map(Song::toString).collect(Collectors.joining(", "));
+    return
+      "Artist{" +
+      "id='" + this.id + "', " +
+      "name='" + this.name + "', " +
+      "artists={" + songNames + "}}"
+    ;
+  }
+
+  @Override
+  public boolean equals(Object object) {
+    if (this == object) { return true; }
+    if (object == null || this.getClass() != object.getClass()) { return false; }
+    Playlist playlist = (Playlist) object;
+    return this.id.equals(playlist.id);
+  }
+
+  @Override
+  public int hashCode() { return this.id != null ? id.hashCode() : 0; }
 
   /**
    * method to add a song to the playlist
