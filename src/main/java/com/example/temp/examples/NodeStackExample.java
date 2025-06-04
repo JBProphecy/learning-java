@@ -1,9 +1,9 @@
-package com.example.temp.examples;
+package com.example.temp.Examples;
 
 import java.util.Iterator;
 
-import com.example.temp.Node;
-import com.example.temp.NodeStack;
+import com.example.temp.NodeStuff.Node;
+import com.example.temp.NodeStuff.NodeStack;
 
 public class NodeStackExample
 {

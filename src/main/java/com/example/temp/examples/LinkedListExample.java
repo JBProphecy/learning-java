@@ -1,12 +1,13 @@
-package com.example.temp.examples;
+package com.example.temp.Examples;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class LinkedListExample
 {
   public static void main() {
     // Create Linked List
-    LinkedList<Integer> myLinkedList = new LinkedList<Integer>();
+    List<Integer> myLinkedList = new LinkedList<Integer>();
 
     // Add Items to Linked List
     myLinkedList.add(12);

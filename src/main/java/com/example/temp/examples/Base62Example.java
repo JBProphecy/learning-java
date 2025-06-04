@@ -1,4 +1,4 @@
-package com.example.temp.examples;
+package com.example.temp.Examples;
 
 import java.util.UUID;
 

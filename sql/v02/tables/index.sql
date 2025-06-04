@@ -53,3 +53,47 @@ CREATE TABLE profile_transfer_requests (
       ON UPDATE NO ACTION -- accounts.id is a primary key and primary keys should never change
       ON DELETE CASCADE, -- if an account is deleted, any profile transfer requests to that account will be deleted as well
 );
+
+CREATE TABLE tracks (
+	id text NOT NULL,
+	name text NOT NULL,
+	collection_id text NOT NULL,
+	collection_type releasable_collection NOT NULL,
+	CONSTRAINT tracks_pkey PRIMARY KEY (id),
+);
+
+CREATE TABLE singles (
+	id text NOT NULL,
+	name text NOT NULL,
+  front_cover_url,
+  back_cover_url,
+	release_date date NOT NULL,
+	CONTRAINT singles_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE albums (
+	id text NOT NULL,
+	name text NOT NULL,
+  front_cover_url,
+  back_cover_url,
+	release_date date NOT NULL,
+	CONSTRAINT albums_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE playlists (
+	id text NOT NULL,
+	name text NOT NULL,
+  front_cover_url,
+  back_cover_url,
+	description text,
+	CONSTRAINT playlists_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE labels (
+	id text NOT NULL,
+	name text NOT NULL,
+  front_cover_url,
+  back_cover_url,
+	description text,
+	CONSTRAINT labels_pkey PRIMARY KEY (id)
+);

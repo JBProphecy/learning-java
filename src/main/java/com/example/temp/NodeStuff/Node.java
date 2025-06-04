@@ -1,4 +1,4 @@
-package com.example.temp;
+package com.example.temp.NodeStuff;
 
 public class Node<T> {
   private T value;
